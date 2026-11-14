@@ -1,1 +1,65 @@
 @import "tailwindcss";
+
+:root {
+  --bg-black: #000000;
+  --space-navy: #00105b;
+  --cosmic-indigo: #6061b6;
+  --nebula-lavender: #c9b5e0;
+  --starlight-cream: #fcf9ec;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-black);
+  color: var(--starlight-cream);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Fullscreen Hyperspeed warp overlay (landing + explore → destination pages) */
+.hyperspeed-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.hyperspeed-overlay canvas,
+#lights {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.warp-hud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+  text-align: center;
+}
+
+.warp-hud h2 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  color: var(--starlight-cream);
+  text-shadow: 0 0 25px rgba(96, 97, 182, 0.9);
+}
+
+/* Aurora background fills its container */
+.section-aurora-bg > div,
+.soft-aurora-container,
+.section-aurora-bg canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
