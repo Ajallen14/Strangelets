@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SoftAurora from '../components/SoftAurora';
-import OrbitalSystemSection from '../components/OrbitalSystemSection';
 import Hyperspeed from '../components/Hyperspeed';
 
 const LandingPage = () => {
@@ -19,7 +18,6 @@ const LandingPage = () => {
         if (entry.isIntersecting) {
           setIsEarthVisible(true);
         } else if (entry.boundingClientRect.top > 0) {
-          // Reset fade if user scrolls back up to Section 1
           setIsEarthVisible(false);
         }
       },
@@ -50,8 +48,8 @@ const LandingPage = () => {
   };
 
   return (
-    <main className="landing-main">
-      {/* Fullscreen Hyperspeed Transition Overlay when Moon or Mars is clicked */}
+    <main className="w-full bg-black">
+      {/* Fullscreen Hyperspeed Transition Overlay */}
       {warpTarget && (
         <div className="hyperspeed-overlay">
           <Hyperspeed
@@ -80,15 +78,21 @@ const LandingPage = () => {
             }}
           />
           <div className="warp-hud">
-            <span className="badge-pill">Hyperspeed Engaged</span>
-            <h2>Warping to {warpTarget.label}...</h2>
+            <span className="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-[0.14em] uppercase bg-[#00105B]/85 text-[#C9B5E0] border border-[#6061B6] rounded-full">
+              Hyperspeed Engaged
+            </span>
+            <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] text-[#FCF9EC] drop-shadow-[0_0_25px_rgba(96,97,182,0.9)]">
+              Warping to {warpTarget.label}...
+            </h2>
           </div>
         </div>
       )}
 
-      {/* SECTION 1: Hero + Scoped SoftAurora Background */}
-      <section id="hero-section" className="page-section hero-section">
-        <div className="section-aurora-bg">
+      {/* SECTION 1: Hero + Aurora Background — PURE TAILWIND */}
+      <section className="relative isolate w-full min-h-screen flex flex-col justify-center items-center overflow-hidden px-6 py-20 border-b border-[#6061B6]/25">
+        
+        {/* Aurora: absolute, fills section, sits behind content */}
+        <div className="section-aurora-bg absolute inset-0 w-full h-full -z-10">
           <SoftAurora
             speed={0.6}
             scale={1.5}
@@ -112,21 +116,35 @@ const LandingPage = () => {
           />
         </div>
 
-        <div className="hero-content">
-          <span className="badge-pill">Interactive Space Museum</span>
-          <h1 className="hero-title">Abandoned, Not Forgotten</h1>
-          <p className="hero-description">
+        {/* Hero Content: centered, padded, max-width constrained */}
+        <div className="relative z-10 max-w-[880px] w-full text-center flex flex-col items-center px-4">
+          
+          {/* Badge Pill */}
+          <span className="inline-block p-4 mb-5 text-xs font-bold tracking-[0.14em] uppercase bg-[#00105B]/85 text-[#C9B5E0] border border-[#6061B6] rounded-full">
+            Interactive Space Museum
+          </span>
+          
+          {/* Title */}
+          <h1 className="text-[clamp(2.5rem,5.5vw,4.2rem)] font-extrabold mb-6 text-[#FCF9EC] leading-tight">
+            Abandoned, Not Forgotten
+          </h1>
+          
+          {/* Description */}
+          <p className="text-lg leading-relaxed text-[#C9B5E0] mb-10 max-w-[720px]">
             Since the 1960s, NASA has left hardware across the solar system—on the
             Moon, on Mars, and in deep space. From retired rovers to probes still
             traveling away from Earth, explore the stories of these silent
             pioneers and the groundbreaking science they made possible.
           </p>
 
-          
+          {/* Explore Now Button */}
+          <button className="group relative inline-flex items-center gap-2 px-8 py-3 bg-[#00105B] text-[#FCF9EC] border border-[#6061B6] rounded-full font-bold text-sm uppercase tracking-widest transition-all duration-300 ease-in-out hover:bg-[#C9B5E0] hover:text-black hover:border-[#FCF9EC] hover:scale-105 hover:shadow-[0_0_25px_rgba(96,97,182,0.6)] active:scale-95 cursor-pointer">
+            <span>Explore Now</span>
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+          </button>
+
         </div>
       </section>
-
-      
     </main>
   );
 };
