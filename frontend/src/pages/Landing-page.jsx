@@ -122,68 +122,11 @@ const LandingPage = () => {
             pioneers and the groundbreaking science they made possible.
           </p>
 
-          <a href="#earth-showcase" className="scroll-prompt">
-            <span>Scroll to Explore Earth</span>
-            <div className="scroll-arrow">↓</div>
-          </a>
+          
         </div>
       </section>
 
-      {/* UNIFIED SCROLL WRAPPER FOR SECTIONS 2 & 3 */}
-      <div className="space-scroll-track">
-        {/* Sticky 3D Viewport that travels from Section 2 into Section 3 */}
-        <div
-          className={`sticky-3d-stage ${
-            isEarthVisible || isOrbitalActive ? 'visible' : ''
-          }`}
-        >
-          {/* Dynamic Header that morphs between Section 2 and Section 3 */}
-          <div className="stage-header-container">
-            <div className={`stage-heading ${!isOrbitalActive ? 'active' : 'hidden'}`}>
-              <span className="badge-pill">Pale Blue Dot</span>
-              <h2>Where Every Mission Began</h2>
-            </div>
-
-            <div className={`stage-heading ${isOrbitalActive ? 'active' : 'hidden'}`}>
-              <span className="badge-pill">Mission Selector</span>
-              <h2>Select a World to Launch</h2>
-              <p>
-                Tap the orbiting <strong>Moon</strong> or <strong>Mars</strong> to engage
-                hyperspeed travel and inspect NASA&apos;s discarded hardware.
-              </p>
-            </div>
-          </div>
-
-          {/* Single 3D Canvas: Close-up Earth in Sec 2 -> Orbiting Moon/Mars in Sec 3 */}
-          <OrbitalSystemSection
-            showOrbits={isOrbitalActive}
-            onSelectDestination={handlePlanetClick}
-          />
-
-          {/* Bottom Scroll Prompt (Only visible in Section 2) */}
-          <a
-            href="#orbital-system"
-            className={`scroll-prompt stage-bottom-prompt ${
-              !isOrbitalActive ? 'active' : 'hidden'
-            }`}
-          >
-            <span>Scroll to Reveal Moon &amp; Mars Orbits</span>
-            <div className="scroll-arrow">↓</div>
-          </a>
-        </div>
-
-        {/* Invisible Scroll Waypoints for Section 2 and Section 3 */}
-        <section
-          id="earth-showcase"
-          ref={earthTriggerRef}
-          className="scroll-trigger-section"
-        />
-        <section
-          id="orbital-system"
-          ref={orbitalTriggerRef}
-          className="scroll-trigger-section"
-        />
-      </div>
+      
     </main>
   );
 };
