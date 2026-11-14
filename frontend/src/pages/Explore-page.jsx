@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useMemo, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AiLoader } from '../components/ui/ai-loader';
 import OrbitalSystemSection from '../components/OrbitalSystemSection';
 import anime from 'animejs/lib/anime.es.js';
 
@@ -119,10 +120,19 @@ const ExplorePage = () => {
 
       {/* 3D Stage — sits ABOVE the particles (z-10 vs z-0) */}
       <div className="relative z-10 w-full max-w-[1200px] flex-1 min-h-0 flex justify-center items-center px-2 md:px-8 pb-4 md:pb-8">
-        <OrbitalSystemSection
-          showOrbits={true}
-          onSelectDestination={handleSelectDestination}
-        />
+        {/* Placeholder matches the 3D stage dimensions so the fallback → content swap causes zero layout shift. AiLoader fades in gracefully while the heavy .glb models (Earth, Moon, Mars) fetch. */}
+        <Suspense
+          fallback={
+            <div className="flex flex-col items-center justify-center w-full h-full bg-black">
+              <AiLoader text="Loading 3D Environment..." size={170} />
+            </div>
+          }
+        >
+          <OrbitalSystemSection
+            showOrbits={true}
+            onSelectDestination={handleSelectDestination}
+          />
+        </Suspense>
       </div>
 
       {/* Feedback */}

@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SoftAurora from '../components/SoftAurora';
 import Hyperspeed from '../components/Hyperspeed';
+import { AiLoader } from '../components/ui/ai-loader';
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -11,6 +12,15 @@ const LandingPage = () => {
   const [isEarthVisible, setIsEarthVisible] = useState(false);
   const [isOrbitalActive, setIsOrbitalActive] = useState(false);
   const [warpTarget, setWarpTarget] = useState(null);
+
+  // Initial app load state: the Hero stays hidden while the loader covers the screen.
+  const [isLoading, setIsLoading] = useState(true);
+  // Controls whether the loader overlay is mounted (kept true while fading out).
+  const [showLoader, setShowLoader] = useState(true);
+  // Controls the loader's opacity (fade-in / fade-out).
+  const [loaderVisible, setLoaderVisible] = useState(true);
+  const [loaderText, setLoaderText] = useState("Initializing Space Museum...");
+  const initialRevealTimer = useRef(null);
 
   useEffect(() => {
     const earthObserver = new IntersectionObserver(
@@ -40,6 +50,16 @@ const LandingPage = () => {
     };
   }, []);
 
+  // Initial load: show the loader immediately on mount, then gracefully fade it
+  // out and cross-fade the Hero section in once initial assets are ready.
+  useEffect(() => {
+    initialRevealTimer.current = setTimeout(() => {
+      setIsLoading(false); // reveal Hero (cross-fades in)
+      setLoaderVisible(false); // gracefully fade the loader out
+    }, 1500); // simulate initial asset / SoftAurora readiness
+    return () => clearTimeout(initialRevealTimer.current);
+  }, []);
+
   const handlePlanetClick = (path, label) => {
     setWarpTarget({ path, label });
     setTimeout(() => {
@@ -47,8 +67,34 @@ const LandingPage = () => {
     }, 2400);
   };
 
+  const handleExploreClick = () => {
+    // Abort the initial reveal so the Hero never flashes behind the warp loader.
+    if (initialRevealTimer.current) clearTimeout(initialRevealTimer.current);
+
+    // Trigger the premium loader again before navigating to /explore.
+    setLoaderText("Warping to Explore...");
+    setLoaderVisible(true);
+    setShowLoader(true);
+    setTimeout(() => {
+      navigate('/explore');
+    }, 1800);
+  };
+
+  const onLoaderHidden = useCallback(() => setShowLoader(false), []);
+
   return (
     <main className="w-full bg-black">
+      {/* Premium loader overlay: initial load + page transitions.
+          Stays mounted while fading out so the exit animation is never cut short. */}
+      {showLoader && (
+        <AiLoader
+          visible={loaderVisible}
+          text={loaderText}
+          size={240}
+          onHidden={onLoaderHidden}
+        />
+      )}
+
       {/* Fullscreen Hyperspeed Transition Overlay */}
       {warpTarget && (
         <div className="hyperspeed-overlay">
@@ -89,8 +135,11 @@ const LandingPage = () => {
       )}
 
       {/* SECTION 1: Hero + Aurora Background — PURE TAILWIND */}
-      <section className="relative isolate w-full min-h-screen flex flex-col justify-center items-center overflow-hidden px-6 py-20 border-b border-[#6061B6]/25">
-        
+      <section
+        className={`relative isolate w-full min-h-screen flex flex-col justify-center items-center overflow-hidden px-6 py-20 border-b border-[#6061B6]/25 transition-opacity duration-700 ease-in-out ${
+          isLoading ? "opacity-0" : "opacity-100"
+        }`}
+      >
         {/* Aurora: absolute, fills section, sits behind content */}
         <div className="section-aurora-bg absolute inset-0 w-full h-full -z-10">
           <SoftAurora
@@ -118,9 +167,8 @@ const LandingPage = () => {
 
         {/* Hero Content: centered, padded, max-width constrained */}
         <div className="relative z-10 max-w-[880px] w-full text-center flex flex-col items-center px-4">
-          
           {/* Badge Pill */}
-          <span className="inline-block p-4 mb-5 text-xs font-bold tracking-[0.14em] uppercase bg-[#00105B]/85 text-[#C9B5E0] border border-[#6061B6] rounded-full">
+          <span className="inline-block px-4 py-1.5 mb-5 text-xs font-bold tracking-[0.14em] uppercase bg-[#00105B]/85 text-[#C9B5E0] border border-[#6061B6] rounded-full">
             Interactive Space Museum
           </span>
           
@@ -137,12 +185,14 @@ const LandingPage = () => {
             pioneers and the groundbreaking science they made possible.
           </p>
 
-          {/* Explore Now Button */}
-          <button className="group relative inline-flex items-center gap-2 px-8 py-3 bg-[#00105B] text-[#FCF9EC] border border-[#6061B6] rounded-full font-bold text-sm uppercase tracking-widest transition-all duration-300 ease-in-out hover:bg-[#C9B5E0] hover:text-black hover:border-[#FCF9EC] hover:scale-105 hover:shadow-[0_0_25px_rgba(96,97,182,0.6)] active:scale-95 cursor-pointer">
+          {/* ✅ Explore Now Button: Navigates to /explore */}
+          <button 
+            onClick={handleExploreClick}
+            className="group relative inline-flex items-center gap-2 px-8 py-3 bg-[#00105B] text-[#FCF9EC] border border-[#6061B6] rounded-full font-bold text-sm uppercase tracking-widest transition-all duration-300 ease-in-out hover:bg-[#C9B5E0] hover:text-black hover:border-[#FCF9EC] hover:scale-105 hover:shadow-[0_0_25px_rgba(96,97,182,0.6)] active:scale-95 cursor-pointer"
+          >
             <span>Explore Now</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </button>
-
         </div>
       </section>
     </main>
