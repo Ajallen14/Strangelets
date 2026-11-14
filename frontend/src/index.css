@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --bg-black: #000000;
   --space-navy: #00105B;
@@ -12,78 +14,85 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--bg-black);
-  color: var(--starlight-cream);
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-black) !important;
+  color: var(--starlight-cream) !important;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  min-height: 100vh;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Landing Page Layout & Theme Styles */
-.landing-container {
-  min-height: 100vh;
-  background: radial-gradient(circle at top, var(--space-navy) 0%, var(--bg-black) 70%);
+.landing-main {
+  width: 100%;
+  background-color: var(--bg-black);
 }
 
-.navbar {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.25rem 1.5rem;
+/* Base independent section wrapper */
+.page-section {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 100vh;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  border-bottom: 1px solid var(--space-navy);
+  overflow: hidden;
 }
 
-.brand {
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--starlight-cream);
+/* =========================================
+   SECTION 1: HERO + SCOPED SOFT AURORA
+   ========================================= */
+.hero-section {
+  padding: 2rem 1.5rem;
+  border-bottom: 1px solid rgba(96, 97, 182, 0.25);
 }
 
-.brand span {
-  color: var(--nebula-lavender);
+/* Confined strictly inside Section 1 */
+.section-aurora-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
-.nav-link {
-  color: var(--nebula-lavender);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.2s;
+.section-aurora-bg > div,
+.soft-aurora-container,
+.section-aurora-bg canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
-.nav-link:hover {
-  color: var(--starlight-cream);
-}
-
-.hero {
-  max-width: 850px;
-  margin: 0 auto;
-  padding: 5rem 1.5rem;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
   text-align: center;
+  pointer-events: none;
 }
 
 .badge-pill {
   display: inline-block;
-  padding: 0.35rem 0.9rem;
+  padding: 0.4rem 1rem;
   margin-bottom: 1.25rem;
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  background-color: var(--space-navy);
+  background-color: rgba(0, 16, 91, 0.85);
   color: var(--nebula-lavender);
   border: 1px solid var(--cosmic-indigo);
   border-radius: 999px;
 }
 
 .hero-title {
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-size: clamp(2.5rem, 5.5vw, 4.2rem);
   font-weight: 800;
   margin-bottom: 1.5rem;
   color: var(--starlight-cream);
@@ -91,121 +100,323 @@ body {
 }
 
 .hero-description {
-  font-size: 1.125rem;
-  line-height: 1.7;
+  font-size: 1.15rem;
+  line-height: 1.75;
   color: var(--nebula-lavender);
   margin-bottom: 2.5rem;
 }
 
-.cta-btn {
-  display: inline-block;
-  padding: 0.85rem 1.75rem;
-  background-color: var(--cosmic-indigo);
-  color: var(--starlight-cream);
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 0.5rem;
-  border: 1px solid var(--nebula-lavender);
-  transition: background-color 0.2s, transform 0.2s;
-}
-
-.cta-btn:hover {
-  background-color: var(--space-navy);
-  transform: translateY(-2px);
-}
-
-.destinations-section {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 3rem 1.5rem 5rem;
-}
-
-.section-header {
-  margin-bottom: 2rem;
-}
-
-.section-header h2 {
-  font-size: 1.75rem;
-  color: var(--starlight-cream);
-  margin-bottom: 0.35rem;
-}
-
-.section-header p {
+.scroll-prompt {
+  margin-top: 1rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
   color: var(--nebula-lavender);
-  font-size: 0.95rem;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: auto;
+  transition: color 0.2s ease;
 }
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+.scroll-prompt:hover {
+  color: var(--starlight-cream);
 }
 
-.destination-card {
-  background-color: var(--space-navy);
-  border: 1.5px solid var(--cosmic-indigo);
-  border-radius: 0.85rem;
-  padding: 1.5rem;
+.scroll-arrow {
+  font-size: 1.4rem;
+  animation: bounceDown 1.8s infinite ease-in-out;
+}
+
+@keyframes bounceDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* =========================================
+   SECTIONS 2 & 3: STICKY EARTH -> ORBIT TRACK
+   ========================================= */
+.space-scroll-track {
+  position: relative;
+  width: 100%;
+  height: 200vh; /* 100vh for Section 2 + 100vh for Section 3 */
+  background: radial-gradient(circle at center, rgba(0, 16, 91, 0.55) 0%, #000000 75%);
+}
+
+/* Stays pinned on screen as you scroll from Section 2 into Section 3 */
+.sticky-3d-stage {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: border-color 0.2s, transform 0.2s;
-}
-
-.destination-card:hover {
-  border-color: var(--nebula-lavender);
-  transform: translateY(-4px);
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.75rem;
+  padding: 2.5rem 1.5rem 1.5rem;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(50px) scale(0.88);
+  transition: opacity 0.9s ease-out, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  overflow: hidden;
 }
 
-.card-title {
-  font-size: 1.35rem;
-  color: var(--starlight-cream);
+.sticky-3d-stage.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
-.card-badge {
-  font-size: 0.75rem;
-  padding: 0.2rem 0.6rem;
-  background-color: var(--bg-black);
-  color: var(--nebula-lavender);
-  border: 1px solid var(--cosmic-indigo);
-  border-radius: 0.35rem;
-}
-
-.card-tagline {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--nebula-lavender);
-  margin-bottom: 0.75rem;
-}
-
-.card-description {
-  font-size: 0.925rem;
-  line-height: 1.6;
-  color: var(--starlight-cream);
-  opacity: 0.9;
-  margin-bottom: 1.5rem;
-}
-
-.card-btn {
+/* Scroll trigger overlays */
+.scroll-trigger-section {
   width: 100%;
-  padding: 0.7rem;
-  background-color: var(--cosmic-indigo);
-  color: var(--starlight-cream);
-  border: none;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  height: 100vh;
+  pointer-events: none;
 }
 
-.card-btn:hover {
+#earth-showcase {
+  margin-top: -100vh; /* Aligns first 100vh trigger with sticky stage */
+}
+
+/* Crossfading Header between Section 2 and Section 3 */
+.stage-header-container {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.stage-heading {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.stage-heading.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stage-heading.hidden {
+  opacity: 0;
+  transform: translateY(-18px);
+  pointer-events: none;
+}
+
+.stage-heading h2 {
+  font-size: clamp(1.9rem, 3.8vw, 2.85rem);
+  color: var(--starlight-cream);
+  margin-bottom: 0.4rem;
+}
+
+.stage-heading p {
+  color: var(--nebula-lavender);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* 3D Canvas takes the center of the sticky stage */
+.orbital-canvas-wrapper {
+  width: 100%;
+  max-width: 1300px;
+  flex: 1;
+  min-height: 450px;
+  position: relative;
+  cursor: grab;
+}
+
+.orbital-canvas-wrapper:active {
+  cursor: grabbing;
+}
+
+.loading-earth {
+  color: var(--nebula-lavender);
+  font-size: 0.95rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.stage-bottom-prompt {
+  z-index: 5;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.stage-bottom-prompt.hidden {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+}
+
+/* Interactive 3D Planet Label Pill */
+.planet-tag {
+  padding: 0.4rem 0.9rem;
+  background-color: rgba(0, 16, 91, 0.92);
+  color: var(--starlight-cream);
+  border: 1px solid var(--cosmic-indigo);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.5s ease, transform 0.3s ease, background-color 0.2s ease;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+.planet-tag-visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.planet-tag-hidden {
+  opacity: 0;
+  transform: scale(0.6);
+  pointer-events: none;
+}
+
+.planet-tag:hover,
+.planet-tag-active {
   background-color: var(--nebula-lavender);
   color: var(--bg-black);
+  border-color: var(--starlight-cream);
+  transform: scale(1.1);
+}
+
+/* =========================================
+   HYPERSPEED WARP OVERLAY & DESTINATION PAGES
+   ========================================= */
+.hyperspeed-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.hyperspeed-overlay canvas,
+#lights {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.warp-hud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+  text-align: center;
+}
+
+.warp-hud h2 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  color: var(--starlight-cream);
+  text-shadow: 0 0 25px rgba(96, 97, 182, 0.9);
+}
+
+.destination-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, var(--space-navy) 0%, var(--bg-black) 70%);
+  color: var(--starlight-cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.back-btn {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--space-navy);
+  color: var(--starlight-cream);
+  border: 1px solid var(--cosmic-indigo);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* =========================================
+   HYPERSPEED WARP OVERLAY & DESTINATION PAGES
+   ========================================= */
+.hyperspeed-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.hyperspeed-overlay canvas,
+#lights {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.warp-hud {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+  z-index: 10;
+  text-align: center;
+}
+
+.warp-hud h2 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  color: var(--starlight-cream);
+  text-shadow: 0 0 25px rgba(96, 97, 182, 0.9);
+}
+
+.destination-page {
+  min-height: 100vh;
+  background: radial-gradient(circle at top, var(--space-navy) 0%, var(--bg-black) 70%);
+  color: var(--starlight-cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.back-btn {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--space-navy);
+  color: var(--starlight-cream);
+  border: 1px solid var(--cosmic-indigo);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
 }
