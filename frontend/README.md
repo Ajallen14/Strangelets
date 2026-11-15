@@ -1,16 +1,88 @@
-# React + Vite
+<h1 align="center">Stranglets</h1>
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Project Topic
 
-Currently, two official plugins are available:
+It is an interactive space museum that lets visitors explore the
+history of Moon and Mars missions through real-time 3D. 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Since the 1960s, NASA has left hardware across the Moon and Mars. From retired rovers to probes still traveling away from Earth, explore the stories of these silent pioneers and the groundbreaking science they made possible.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+| Layer | Technology |
+|---|---|
+| UI framework | React 19 |
+| Build tool | Vite 8 |
+| 3D rendering | Three.js, `@react-three/fiber`, `@react-three/drei` |
+| Animation | Framer Motion, Anime.js |
+| Styling | Tailwind CSS 4 |
+| Routing | React Router DOM 7 |
+| Icons | Lucide React |
+| Linting | Oxlint |
 
-## Expanding the Oxlint configuration
+## 📁 Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```
+frontend/
+├── index.html                  # Entry HTML
+├── package.json
+├── vite.config.js
+├── public/
+│   ├── favicon.svg
+│   ├── icons.svg
+│   └── models/                 # GLB 3D models (Moon, Mars, Earth, landers, rovers)
+│       ├── 3D-moon-assets/     # Pioneer, Ranger, Surveyor, Clementine, Apollo, LRO…
+│       └── *.glb
+└── src/
+    ├── main.jsx                # React entry point
+    ├── App.jsx                 # Routes: /, /explore, /mars, /moon
+    ├── index.css               # Tailwind imports
+    ├── components/
+    │   ├── Hyperspeed.jsx      # Warp starfield background
+    │   ├── SoftAurora.jsx      # Aurora gradient backdrop
+    │   ├── OrbitalSystemSection.jsx
+    │   ├── Particles.jsx
+    │   ├── MarsCanvas.jsx      # 3D Mars scene
+    │   ├── moon/               # Moon exhibit (hero, timeline, early programs)
+    │   └── ui/                 # Buttons, timeline, loader, scroll-reveal
+    ├── data/marsEquipment.js   # Rover/lander metadata
+    └── pages/
+        ├── Landing-page.jsx    # Home
+        ├── Explore-page.jsx    # Exhibit picker
+        ├── mars-pages/Mars-page.jsx
+        └── moon-pages/moon-explore.jsx
+```
+
+## 🖼 Screenshots
+
+
+---
+
+## Installation
+
+Requires Node.js 18+ and npm.
+
+```bash
+# 1. Clone the repo (if you haven't)
+git clone <repo-url>
+cd NASA/frontend
+
+# 2. Install dependencies
+npm install
+```
+
+## Running
+
+```bash
+# Development server (hot reload) → http://localhost:5173
+npm run dev
+
+# Production build → outputs to dist/
+npm run build
+
+# Preview the production build locally
+npm run preview
+
+# Lint
+npm run lint
+```
