@@ -29,7 +29,7 @@ const MoonHero = ({
   modelPath = '/models/moon.glb',
   scale = 3.5,
   rotationSpeed = 0.15,
-  enableZoom = true,
+  enableZoom = false,
   showHint = true,
   className = '',
 }) => {
@@ -37,7 +37,7 @@ const MoonHero = ({
     <div
       className={`relative z-10 w-full max-w-5xl mx-auto h-[70vh] md:h-[50vh] flex justify-center items-center px-4 mb-12 ${className}`}
     >
-      <div className="w-full h-full relative cursor-grab active:cursor-grabbing rounded-2xl overflow-hidden bg-black/50 backdrop-blur-sm border border-[#6061B6]/20">
+      <div className="w-full h-full relative cursor-grab active:cursor-grabbing rounded-2xl overflow-hidden bg-black/50 backdrop-blur-sm ">
         <Canvas camera={{ position: [0, 0, 6], fov: 45 }} dpr={[1, 2]}>
           <ambientLight intensity={1.2} />
           <directionalLight position={[5, 5, 5]} intensity={3} color="#FCF9EC" />
@@ -68,14 +68,7 @@ const MoonHero = ({
           />
         </Canvas>
 
-        {/* Interaction Hint */}
-        {showHint && (
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 pointer-events-none">
-            <p className="text-xs text-[#6061B6] font-semibold uppercase tracking-widest animate-pulse whitespace-nowrap">
-              Drag to Rotate • Scroll to Zoom
-            </p>
-          </div>
-        )}
+        
       </div>
     </div>
   );
