@@ -4,7 +4,9 @@ import MoonTimeline from '../../components/moon/MoonTimeline';
 import Pioneer4Feature from '../../components/moon/early-programs/Pioneer4Feature';
 import { ScrollReveal } from '../../components/ui/ScrollReveal';
 import RangerProgram from '../../components/moon/early-programs/ranger-program';
-
+import Surveyor from '../../components/moon/early-programs/Surveyor';
+import Apollo11 from '../../components/moon/apollo-program/apollo11';
+import Apollo12 from '../../components/moon/apollo-program/apollo12';
 const MoonExplore = () => {
   const navigate = useNavigate();
 
@@ -62,7 +64,9 @@ const MoonExplore = () => {
         {/* Featured Pioneer 4 Story (extracted) */}
         <Pioneer4Feature />
         <RangerProgram />
-        
+        <Surveyor /> 
+        <Apollo11 />
+        <Apollo12 />
       </section>
     </main>
   );
