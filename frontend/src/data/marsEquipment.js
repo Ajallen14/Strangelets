@@ -1,5 +1,8 @@
 // Discarded NASA equipment on Mars — the user's 7-item list.
 // lat/lng are the last known coordinates on Mars (degrees; lng east-positive).
+// title/paragraphs are the story shown when the marker is clicked (placeholder
+// copy below — replace each with the real story when it arrives).
+// model (optional) is a glb rendered beside the story.
 export const MARS_EQUIPMENT = [
   {
     id: 'viking',
@@ -8,10 +11,44 @@ export const MARS_EQUIPMENT = [
     lng: -47.973,
     year: '1976',
     status: 'Silent since 1982',
-    summary:
-      'Twin landers that proved Mars could be touched and studied for years, not days. Viking 1 held the surface record for over two decades.',
-    detail:
-      'Viking 1 set down in Chryse Planitia on July 20, 1976 — the first successful US Mars landing — and Viking 2 followed in Utopia Planitia on September 3. Built for 90 sols, Viking 1 kept sending data until November 1982, when a faulty command sequence overwrote its antenna memory. Viking 2 lasted until April 1980. Both landers still sit where they fell silent.',
+    title: 'Viking Landers',
+    model: '/models/Viking Lander.glb',
+    subsections: [
+      {
+        heading: 'Viking 1: The Machine That Outlived Its Mission',
+        paragraphs: [
+          'In 1976, no one had ever seen the surface of Mars up close. No human had stood on it, and no spacecraft had worked there for more than a few seconds.',
+          'Then came Viking 1.',
+          'It left Earth on August 20, 1975, riding a Titan rocket from Cape Canaveral, and spent nearly a year crossing roughly 500 million miles of space. Its lander was meant to touch down on July 4, 1976, as a gift for America\'s 200th birthday. But when the orbiter took a closer look, the planned site was too rough, and the team decided it was not worth the risk. They moved the landing about 575 kilometres west, to a plain called Chryse Planitia, the Golden Plain.',
+          'On July 20, exactly seven years after Apollo 11 reached the Moon, the lander separated from its orbiter and plunged into the thin Martian air at nearly 10,000 miles per hour. It touched down safely. Twenty-five seconds later, it began sending its first picture home.',
+          'It showed a rock-strewn plain and one of the lander\'s own footpads. It was the first clear image ever sent back from the surface of Mars.',
+          'Viking 1 was built to last 90 days. It lasted six years.',
+          'Through those years, it did what no machine had done before. It photographed Martian sunsets, dug trenches in the soil with its robotic arm, and sent back weather reports, day after day. It also carried the first experiments ever designed to look for life on another planet. One of them, called Labeled Release, gave a result that looked, on the surface, like metabolism. But another instrument found no organic molecules, and NASA concluded the reaction was most likely strange soil chemistry. A small group of scientists has argued otherwise ever since.',
+          'In 1981, the lander was renamed the Thomas A. Mutch Memorial Station, after the leader of its imaging team, who had died in a climbing accident in the Himalayas.',
+          'Then, in November 1982, Mars did not end the mission. A command sent from Earth, meant to give the lander\'s ageing battery new charging software, went wrong. Viking 1 stopped responding.',
+          'Engineers tried for months. They sent command after command, based on every failure they could imagine. In the spring of 1983, they gave up.',
+          'But the lander never left. In 2006, NASA\'s Mars Reconnaissance Orbiter turned its camera on Chryse Planitia and found Viking 1 still sitting where it had landed, about three metres wide, with its parachute and heat shield scattered nearby. It was imaged again in 2016.',
+          'Viking 1 has been silent for more than forty years, and it remains where it stopped, on a plain on another world.',
+        ],
+      },
+      {
+        heading: 'Viking 2: The Twin in the North',
+        paragraphs: [
+          'Seven weeks after Viking 1 made history on Mars, its twin arrived.',
+          'Viking 2 had left Earth on September 9, 1975, and slipped into orbit around Mars the following August. For weeks, its orbiter studied the surface below, looking for a safe place to land. The team chose Utopia Planitia, a vast plain far to the north, much closer to the Martian pole than its sister ship had gone.',
+          'The mood at mission control was uneasy. Viking 1 had worked perfectly, and now there was more to lose. If the second landing failed, the celebration of the past few months could quickly turn into criticism.',
+          'On September 3, 1976, the lander separated from its orbiter and made it down safely. Its cameras began taking pictures right away. The ground was rockier than at the first site, scattered with boulders that were probably thrown out by distant impacts.',
+          'Then the work began. Like Viking 1, Viking 2 scooped up Martian soil and ran it through biology experiments, the first ever built to look for life on another planet. Its results echoed those of its twin, which sat thousands of kilometres away. One test suggested something like metabolism, but the instrument searching for organic molecules found none. NASA concluded that the soil\'s strange chemistry was the likelier cause. Viking 2 had not solved the puzzle, but it had confirmed that the puzzle was real.',
+          'Because it sat so far north, Viking 2 also saw something its twin could not. It saw winter.',
+          'In May 1979, its camera photographed a thin white coating on the rocks and soil: water-ice frost, only a few thousandths of a centimetre thick. It had appeared in the same place almost exactly one Martian year earlier. When the mission ended, JPL called it perhaps the lander\'s most important discovery: water frost covers the ground at far northern latitudes each winter.',
+          'Viking 2 was built to last 90 days. It lasted more than three and a half years, sending home weather reports and photographs long after its mission was complete.',
+          'Then, in early 1980, its batteries began to fail. In March, engineers received garbled data. The final transmission was scheduled for April 11, and no data came. The orbiter was almost out of gas, and NASA needed its antennas for Voyager\'s arrival at Saturn, so the end had already been planned. Viking 2 was switched off while its twin kept working for another two and a half years.',
+          'In 2001, the lander was renamed the Gerald Soffen Memorial Station, after the Viking project scientist who had died the year before.',
+          'In 2006, NASA\'s Mars Reconnaissance Orbiter found it. The lander, about three metres wide, sat on the frozen plain with its heat shield and backshell scattered nearby. Its camera has returned to the area many times since, watching for change.',
+          'Viking 2 has been silent since 1980. It is still there, and still being watched.',
+        ],
+      },
+    ],
   },
   {
     id: 'pathfinder',
@@ -20,10 +57,21 @@ export const MARS_EQUIPMENT = [
     lng: -33.55,
     year: '1997',
     status: 'Silent since 1997',
-    summary:
-      'The airbag-landers proof of cheap Mars access. Carried Sojourner, the first wheeled vehicle on Mars, and returned 16,500 images in 83 sols.',
-    detail:
-      'Pathfinder bounced to a stop in Ares Vallis on July 4, 1997 inside a cocoon of airbags — a landing technique never tried before. It deployed Sojourner, a microwave-oven-sized rover that analyzed rocks for 83 sols. The mission ended when the lander\'s battery died in a cold night; the site was later renamed the Carl Sagan Memorial Station.',
+    title: 'Mars Pathfinder: The Little Rover That Kept Going',
+    paragraphs: [
+      'On Independence Day, 1997, a spacecraft slammed into Mars at 31 miles per hour. The engineers who built it had to wait for sunrise to find out whether it had survived.',
+      'It was supposed to hit that hard. Mars Pathfinder had launched on December 4, 1996, and crossed to the Red Planet in seven months. Its descent took only four minutes: a heat shield, a parachute, then rockets. And then something no American spacecraft had tried before. Wrapped in airbags, it dropped to the surface, bounced at least fifteen times across the plain, and rolled to a stop more than a kilometre from where it first struck.',
+      'It was the first American landing on Mars since Viking, twenty-one years earlier.',
+      'The landing site was Ares Vallis, an ancient flood plain and one of the rockiest places on Mars. When the Sun came up, the lander began sending pictures home. Its airbags deflated, its petals opened, and out rolled a small six-wheeled rover named Sojourner, after the abolitionist Sojourner Truth.',
+      'Sojourner was about the size of a microwave oven and weighed roughly 10.6 kilograms. It was designed to work for seven Martian days. The lander was expected to last a month.',
+      'Sojourner never went far. It stayed within about twelve metres of the lander and drove only about a hundred metres in total. But it did something no machine had done before: it drove up to rocks on another planet and measured them. It examined stones that the team named Barnacle Bill, Yogi and Scooby-Doo, and analysed more than a dozen rocks and soil patches in all. What it found suggested a violent past. The valley around them had been carved by an ancient flood, one scientists believe held as much water as North America\'s Great Lakes and drained in about two weeks.',
+      'The lander, renamed the Carl Sagan Memorial Station in honour of the astronomer who had died the year before, sent home more than 16,500 images, along with weather data. Sojourner added about 550 more.',
+      'Then, on September 27, 1997, the mission\'s eighty-third Martian day, Pathfinder sent its last full transmission.',
+      'Engineers had always expected the battery to be the first thing to fail, and it was. A final signal with no data arrived on October 7. For five months the team kept trying. On March 10, 1998, NASA ended the mission. When the lander went quiet, Sojourner had just finished measuring a rock called Chimp.',
+      'The team said it was not goodbye, only see you later. They were right about the future. Every rover that has driven on Mars since traces its roots to that small machine.',
+      'In December 2006, NASA\'s Mars Reconnaissance Orbiter looked down on Ares Vallis and found Pathfinder. The lander\'s ramps, the airbags, and the parachute were all there. Near the lander was a small feature the right size for Sojourner, one that was not in the lander\'s earlier pictures. If it is the rover, it may have crept closer to the lander after the lander went silent.',
+      'Pathfinder has been silent for nearly thirty years. It is still on the plain where it landed.',
+    ],
   },
   {
     id: 'spirit',
@@ -32,10 +80,21 @@ export const MARS_EQUIPMENT = [
     lng: 175.48,
     year: '2004',
     status: 'Silent since 2010',
-    summary:
-      'A 90-day rover that roamed for 6 years. Trapped in soft soil at Troy, it kept working as a stationary science platform through its last winter.',
-    detail:
-      'Spirit landed in Gusev Crater on January 4, 2004, expected to drive 600 meters. It covered 7.73 km, found evidence that Gusev once held water-altered rocks, and climbed Husband Hill. Stuck in sand in 2009, it became a fixed lab until NASA lost contact in March 2010, after 2,269 sols.',
+    title: 'Spirit: The Rover That Wouldn\'t Stop',
+    model: '/models/spirit_rover.glb',
+    paragraphs: [
+      'Spirit was built to work for 90 days.',
+      'On January 4, 2004, the rover bounced to a stop inside its airbags in Gusev Crater, a vast basin on Mars bigger than the state of Connecticut. Scientists suspected it once held a lake. Three weeks later, its twin, Opportunity, landed on the other side of the planet.',
+      'Spirit\'s first test came quickly. Seventeen days after landing, it stopped talking to Earth. A problem in its flash memory had sent it into a fault mode, and for a few tense days, the mission looked as if it might end before it began. Engineers coaxed it back to life.',
+      'Then the surprises started. The crater floor turned out to be volcanic rock, with no sign of a lake. So Spirit set out for a range of low hills called the Columbia Hills, and began to climb. There it found rocks that told a story of impacts, explosive volcanoes, and water beneath the surface. By September 2005, it had reached the summit of Husband Hill, farther and higher than anyone had planned.',
+      'Along the way, Spirit kept getting lucky. Gusts of Martian wind blew the dust off its solar panels. Then, in early 2006, its right front wheel jammed. Rather than give up, the team drove the rover backward, dragging the dead wheel behind it like a plough.',
+      'That broken wheel led to one of the mission\'s greatest discoveries. Scraping through the soil near a volcanic plateau called Home Plate, it dug a bright white trench. The soil in it turned out to be nearly pure silica, the kind that on Earth forms in hot springs and steam vents, like those in Yellowstone. Places like that are where microbes thrive and where traces of ancient life are best preserved.',
+      'In the spring of 2009, Spirit broke through a hard crust into soft sand at a place called Troy. It was stuck. Engineers spent months trying to free it. In January 2010, NASA changed Spirit\'s job. It would no longer be a rover. It would be a stationary science station, and it kept working.',
+      'Then winter came. Spirit was tilted away from the Sun, and its batteries were running out. Its last panorama, taken in February 2010, showed the Columbia Hills in the distance. On March 22, 2010, it sent its last message. It had driven 7.73 kilometres. It fell only about a month short of Viking 1\'s record for the longest-working spacecraft on the Martian surface.',
+      'For more than a year, NASA kept calling. Controllers sent over 1,300 commands, hoping that spring would wake the rover. In May 2011, they sent the last one. Spirit had most likely frozen when its heaters ran out of power.',
+      'Opportunity, still driving on the other side of Mars, was heading toward a crater rim. The team named its arrival point Spirit Point.',
+      'Spirit has been silent for more than sixteen years. It still sits at Troy, where it stopped, with the Columbia Hills behind it. In 2011, NASA\'s orbiter photographed it from above, a tiny bright dot beside Home Plate.',
+    ],
   },
   {
     id: 'opportunity',
@@ -44,10 +103,20 @@ export const MARS_EQUIPMENT = [
     lng: 354.47,
     year: '2004',
     status: 'Silent since 2018',
-    summary:
-      'The 15-year marathoner. Drove 45 km across Meridiani Planitia, found gypsum and hematite "blueberries," then died in a planet-wide dust storm.',
-    detail:
-      'Opportunity landed on January 25, 2004, for a 90-sol mission and lasted 5,352 sols. It found minerals that prove ancient liquid water, survived 11 years beyond its warranty, and sent its last words — "my battery is low and it\'s getting dark" — as a global dust storm blotted out the sun in June 2018.',
+    title: 'Opportunity: The Marathon Rover',
+    model: '/models/Opportunity.glb',
+    paragraphs: [
+      'It lasted almost fifteen years and drove more than 45 kilometres.',
+      'It began with one of the luckiest landings in the history of space exploration. On January 25, 2004, Opportunity arrived on Meridiani Planum, a flat plain near the Martian equator. An orbiter had spotted a mineral there called hematite, which on Earth usually forms where liquid water has been. The rover\'s airbags bounced and rolled across the plain and came to rest inside a tiny crater about 22 metres wide. Mission scientist Steve Squyres called it an interplanetary hole in one.',
+      'Within weeks, Opportunity found small round pebbles scattered across the ground. The team nicknamed them blueberries. They turned out to be iron-rich spheres formed when groundwater soaked through the rock. By March, the team announced what the rover had found in the crater walls: this plain had once been covered by salty water.',
+      'Then Opportunity just kept going. It drove on to a larger crater called Endurance, then to Victoria, about half a kilometre wide. In 2008 it set out for Endeavour, a crater 22 kilometres across, nearly three years\' drive away. When it arrived in August 2011, it reached a point on the rim named Spirit Point, after its fallen twin. There, it found clay minerals that form in water gentler than the acidic water it had found before.',
+      'In March 2015, Opportunity passed a milestone no machine had reached before. It had driven the length of a marathon on another world. By then it had already passed the distance records set by the Apollo 17 lunar rover and a Soviet rover called Lunokhod 2.',
+      'In 2017, the rover started down a shallow channel cut into Endeavour\'s rim, called Perseverance Valley. Scientists wanted to know whether flowing water had carved it.',
+      'On May 30, 2018, orbiters saw a dust storm growing on Mars. Within days, it covered the entire planet. Opportunity runs on sunlight, and the sky went dark. The rover took one last 360-degree panorama of 354 images, and some frames are still in black and white because the storm arrived before it could finish. On June 10, 2018, it sent its last signal.',
+      'Engineers waited for the storm to clear. In September, an orbiter photographed the rover from above, a tiny dot on the slope that could almost be mistaken for a boulder. For eight months, the team sent more than a thousand commands, including songs, hoping the rover would wake up. Nothing came back.',
+      'On February 13, 2019, NASA\'s Thomas Zurbuchen declared the mission complete. He called it an emotional moment for a room full of people who had spent years of their lives with this machine.',
+      'Opportunity is still in Perseverance Valley, where it stopped, halfway down the slope. It has been silent for more than eight years.',
+    ],
   },
   {
     id: 'phoenix',
@@ -56,10 +125,21 @@ export const MARS_EQUIPMENT = [
     lng: 234.35,
     year: '2008',
     status: 'Silent since 2008',
-    summary:
-      'The polar ice-digger. Touched down in the arctic plain of Vastitas Borealis, tasted water ice in Martian soil, and froze into the winter night.',
-    detail:
-      'Phoenix landed on May 25, 2008, the first craft to touch the Martian arctic. Its robotic arm scraped water-ice just below the surface and recorded snowfall. Built for 90 sols, it outlasted the Martian summer but could not survive the -150°C polar winter; its solar panels shattered in the ice.',
+    title: 'Phoenix: Built from What Was Left Behind',
+    paragraphs: [
+      'Phoenix was built from what other missions left behind.',
+      'A lander meant for an earlier Mars mission had been cancelled and sat nearly finished in a clean room for years. An earlier polar lander had failed. When NASA wanted to try again, it used the parts: the old lander, and improved copies of the instruments from the failed one. The mission\'s goal was to land farther north than any spacecraft had gone, and to dig.',
+      'Phoenix launched on August 4, 2007. On May 25, 2008, it landed in the arctic plains of Mars, at about 68 degrees north, the same latitude as northern Alaska. Orbiters had spotted signs of water ice just beneath the surface. Phoenix was sent to see it up close, and no stationary lander had touched down successfully on Mars in 32 years, since Viking 2.',
+      'It worked. As the lander\'s engines fired on the way down, they blew away loose soil and exposed bright patches beneath it. They looked like ice.',
+      'Then its robotic arm went to work. In a trench the team named Dodo-Goldilocks, the arm uncovered small bright clumps. A few days later, they were gone, vaporized in the thin Martian air, as ice would. On July 31, 2008, NASA announced that an oven on the lander had heated a soil sample and found water ice, just a few centimetres under the surface. It was the first time Martian water had been directly sampled.',
+      'Phoenix found more than ice. Its chemistry lab found a salt called perchlorate, which attracts water and was a surprise to the team. It found calcium carbonate, a main ingredient of chalk, a sign that liquid water had once touched this soil. And a laser it pointed at the sky detected snow falling from clouds about four kilometres up, before it vaporized well above the ground.',
+      'Phoenix was designed to work for three months. It worked for five.',
+      'But it was never meant to last through winter. As autumn deepened at the pole, the Sun sank lower, the days shortened, and a dust storm cut what light remained. The solar panels could no longer recharge the batteries. On November 2, 2008, Phoenix sent its last message. NASA had hoped to use it as a weather station for a little longer. It was not to be.',
+      'The agency kept listening. Over the next year and a half, the Mars Odyssey orbiter flew over the site again and again, more than two hundred times in all, in case the lander had somehow woken up with the spring. In May 2010, NASA\'s Mars Reconnaissance Orbiter took a new picture. The lander no longer cast the shadow it once had. One solar panel appeared to have collapsed under the weight of the carbon-dioxide ice that had piled up all winter, possibly hundreds of pounds of it.',
+      'NASA ended the mission on May 24, 2010, almost exactly two years after Phoenix landed, and called it a success.',
+      'In 2012, an orbiter looked again, and Phoenix was still there. Scientists still check on it, now to track how frost forms on the plain.',
+      'Phoenix has been silent for more than eighteen years. It was never meant to survive. It stayed long enough to do what it was sent to do.',
+    ],
   },
   {
     id: 'insight',
@@ -68,10 +148,21 @@ export const MARS_EQUIPMENT = [
     lng: 135.9,
     year: '2018',
     status: 'Silent since 2022',
-    summary:
-      'The quake-listener. Its seismometer heard hundreds of marsquakes, revealing a liquid core, until dust starved its solar panels on Elysium Planitia.',
-    detail:
-      'InSight landed on November 26, 2018, with a self-hammering mole and France\'s SEIS seismometer. It recorded over 1,300 marsquakes, measured a molten core, and tracked meteorite strikes. Dust-coated panels finally starved it in December 2022, but it left the first full picture of Mars\' hidden interior.',
+    title: 'InSight: The Lander That Listened',
+    model: '/models/InSight.glb',
+    paragraphs: [
+      'For four years, InSight listened to Mars. Then, for two more, NASA listened for InSight.',
+      'The lander arrived on November 26, 2018, on Elysium Planitia, a flat, empty plain near the Martian equator that engineers nicknamed the biggest parking lot on the planet. It was built on the same design as Phoenix, and its goal was one no mission had attempted: a full checkup of the inside of Mars, for the first time since the planet formed 4.5 billion years ago.',
+      'Getting there had not been easy. A vacuum leak in its French-built seismometer had grounded the mission in 2016 and pushed the launch back two years. The delay added to the cost. But in 2018, InSight became the first interplanetary spacecraft ever launched from America\'s West Coast, and its robotic arm set the seismometer down gently on the Martian ground.',
+      'The seismometer then began to hear things. Over four years, it recorded 1,319 marsquakes, and some of them were strong. It also picked up meteorite impacts. In May 2022, it recorded the largest quake ever detected on another planet, about magnitude 5, and the shaking rang through Mars for hours. By watching how those waves bent and bounced, scientists could finally see inside Mars. They mapped its crust, its mantle, and a core made of liquid.',
+      'InSight had also brought a second instrument, a German-built heat probe called the mole. It was a 40-centimetre spike meant to hammer itself several metres down and take the planet\'s temperature. It never got there. The soil on Mars was clumpier than anyone expected, and the mole could not get a grip. After almost two years of trying, in January 2021, the team hammered it 500 more times, saw no progress, and gave up.',
+      'The seismometer, though, kept going. InSight was built to last two years, and NASA extended it twice.',
+      'But Mars has a way of ending solar-powered missions. Dust built up on InSight\'s panels, season after season. By May 2022, they were producing about a tenth of the energy they had at landing. The team tried shaking the panels, and when that failed, they tried something stranger: dribbling sand from the lander\'s scoop on windy days, hoping the falling grains would sweep dust away. It helped, but not enough.',
+      'In April 2022, InSight took its last selfie, and its panels were nearly covered in dust. The team shut off one instrument after another, saving what power remained for the seismometer. Then NASA set a rule: if the lander missed two calls, the mission was over.',
+      'On December 15, 2022, it made its last contact. On December 19, the lander told the world not to worry about it, saying its time on Mars had been productive and serene. Two missed calls later, on December 21, NASA declared the mission over.',
+      'In October 2024, an orbiter photographed InSight as a farewell and to track the changing landing site. The dust on its panels had turned them the same reddish-brown as the ground around them.',
+      'It has been silent for nearly four years. It is still on that plain, almost part of the landscape.',
+    ],
   },
   {
     id: 'ingenuity',
@@ -80,10 +171,20 @@ export const MARS_EQUIPMENT = [
     lng: 77.45,
     year: '2021',
     status: 'Retired 2024',
-    summary:
-      'The first aircraft on another world. Meant to fly five times, it flew 72 — until a rotor blade broke in the sand of Jezero Crater.',
-    detail:
-      'Ingenuity rode under Perseverance\'s belly and rose 3 meters on April 19, 2021 — the Wright Brothers moment on Mars. It survived 72 flights over 3 years as Perseverance\'s scout. On January 18, 2024, a rotor blade struck the ground during landing and shattered. It rests in Jezero Crater while Perseverance carries its legacy forward.',
+    title: 'Ingenuity: The Little Helicopter That Stayed Behind',
+    model: '/models/Ingenuity.glb',
+    paragraphs: [
+      'It was meant to fly five times.',
+      'Ingenuity was a technology demonstration, a four-pound helicopter strapped to the belly of the Perseverance rover and sent to Mars. NASA had given it a thirty-day window and a modest goal: prove that powered, controlled flight on another planet was even possible.',
+      'The air on Mars is incredibly thin, less than one percent as dense as on Earth. Flying there is like trying to fly at an altitude where no helicopter on Earth could lift off. Many engineers doubted it would work. On April 19, 2021, it did.',
+      'Ingenuity rose from the Martian dust, hovered, and settled back down. It was the first powered, controlled flight on another world. Then it flew again. And again. Five flights became ten. Ten became twenty. Soon, the little helicopter had stopped being an experiment and become a scout, flying ahead of Perseverance to survey the terrain, photograph rocks, and help the rover choose a safe path.',
+      'The mission outlived every forecast. For nearly three years it kept flying through dust, cold, and thin air, long after the team had planned to move on. By the end, Ingenuity had made 72 flights. It had spent more than two hours in the air, covering about eleven miles, fourteen times farther than planned. The mission cost about $85 million.',
+      'Then, on January 18, 2024, came Flight 72.',
+      'It was meant to be a quick pop-up hop to check on the helicopter after an unplanned landing on its previous flight. Ingenuity climbed to its planned altitude. But on the way down, the signal between the helicopter and the rover cut out, before touchdown.',
+      'Days later, new images arrived from Mars. Ingenuity\'s own camera had caught the shadow of a rotor blade, and part of it was gone. At least one of its carbon-fiber blades had been damaged in the landing. On January 25, NASA announced that Ingenuity would never fly again.',
+      'The helicopter was still upright. It was still talking to Earth. But it could not leave the ground."It flew farther and higher than we ever thought possible" NASA\'s administrator said. Perseverance drove on. Ingenuity stayed behind, where it landed, a tiny machine in a vast red plain, the first aircraft to fly on another planet.',
+      'It never lifted off again. But for 72 flights, it showed us that the sky of another world could be ours.',
+    ],
   },
 ];
 
