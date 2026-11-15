@@ -11,6 +11,13 @@ export const MARS_EQUIPMENT = [
     lng: -47.973,
     year: '1976',
     status: 'Silent since 1982',
+    stats: [
+      { label: 'Lander Mass', value: '978 kg' },
+      { label: 'Design Life', value: '90 days' },
+      { label: 'Longest Operation', value: '6+ years (Viking 1)' },
+      { label: 'Landing Sites', value: 'Chryse · Utopia Planitia' },
+      { label: 'Last Contact', value: '1980 · 1982', small: true },
+    ],
     title: 'Viking Landers',
     model: '/models/Viking Lander.glb',
     subsections: [
@@ -57,6 +64,13 @@ export const MARS_EQUIPMENT = [
     lng: -33.55,
     year: '1997',
     status: 'Silent since 1997',
+    stats: [
+      { label: 'Launch Mass', value: '890 kg' },
+      { label: 'Rover Mass', value: '10.6 kg' },
+      { label: 'Distance Driven', value: '~100 m' },
+      { label: 'Images Returned', value: '17,050+' },
+      { label: 'Mission Duration', value: '85 days', small: true },
+    ],
     title: 'Mars Pathfinder: The Little Rover That Kept Going',
     paragraphs: [
       'On Independence Day, 1997, a spacecraft slammed into Mars at 31 miles per hour. The engineers who built it had to wait for sunrise to find out whether it had survived.',
@@ -80,6 +94,13 @@ export const MARS_EQUIPMENT = [
     lng: 175.48,
     year: '2004',
     status: 'Silent since 2010',
+    stats: [
+      { label: 'Rover Mass', value: '185 kg' },
+      { label: 'Design Life', value: '90 sols' },
+      { label: 'Distance Driven', value: '7.73 km' },
+      { label: 'Mission Duration', value: '6 years' },
+      { label: 'Landing Site', value: 'Gusev Crater', small: true },
+    ],
     title: 'Spirit: The Rover That Wouldn\'t Stop',
     model: '/models/spirit_rover.glb',
     paragraphs: [
@@ -103,6 +124,13 @@ export const MARS_EQUIPMENT = [
     lng: 354.47,
     year: '2004',
     status: 'Silent since 2018',
+    stats: [
+      { label: 'Rover Mass', value: '185 kg' },
+      { label: 'Design Life', value: '90 sols' },
+      { label: 'Distance Driven', value: '45.16 km' },
+      { label: 'Mission Duration', value: '15 years' },
+      { label: 'Landing Site', value: 'Meridiani Planum', small: true },
+    ],
     title: 'Opportunity: The Marathon Rover',
     model: '/models/Opportunity.glb',
     paragraphs: [
@@ -125,6 +153,13 @@ export const MARS_EQUIPMENT = [
     lng: 234.35,
     year: '2008',
     status: 'Silent since 2008',
+    stats: [
+      { label: 'Launch Mass', value: '670 kg' },
+      { label: 'Lander Mass', value: '350 kg' },
+      { label: 'Robotic Arm', value: '2.35 m' },
+      { label: 'Key Find', value: 'Water ice + perchlorate' },
+      { label: 'Mission Duration', value: '157 sols', small: true },
+    ],
     title: 'Phoenix: Built from What Was Left Behind',
     paragraphs: [
       'Phoenix was built from what other missions left behind.',
@@ -148,6 +183,13 @@ export const MARS_EQUIPMENT = [
     lng: 135.9,
     year: '2018',
     status: 'Silent since 2022',
+    stats: [
+      { label: 'Launch Mass', value: '694 kg' },
+      { label: 'Lander Mass', value: '358 kg' },
+      { label: 'Marsquakes Recorded', value: '1,319' },
+      { label: 'Largest Quake', value: '~Magnitude 5' },
+      { label: 'Mission Duration', value: '1,440 sols', small: true },
+    ],
     title: 'InSight: The Lander That Listened',
     model: '/models/InSight.glb',
     paragraphs: [
@@ -171,6 +213,13 @@ export const MARS_EQUIPMENT = [
     lng: 77.45,
     year: '2021',
     status: 'Retired 2024',
+    stats: [
+      { label: 'Mass', value: '1.8 kg' },
+      { label: 'Rotor Span', value: '1.2 m' },
+      { label: 'Total Flights', value: '72' },
+      { label: 'Flight Time', value: '128.8 min' },
+      { label: 'Distance Flown', value: '17.0 km', small: true },
+    ],
     title: 'Ingenuity: The Little Helicopter That Stayed Behind',
     model: '/models/Ingenuity.glb',
     paragraphs: [
