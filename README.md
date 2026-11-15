@@ -54,7 +54,11 @@ frontend/
 ```
 
 ## 🖼 Screenshots
+<img width="1845" height="961" alt="Screenshot from 2026-11-15 20-58-08" src="https://github.com/user-attachments/assets/8baac7af-d1c4-4e29-bb1a-34d9f5f30909" />
 
+<img width="1845" height="961" alt="Screenshot from 2026-11-15 21-00-04" src="https://github.com/user-attachments/assets/1d2960ae-4cd0-439f-8b00-059ff3ef1f9c" />
+
+<img width="1845" height="961" alt="Screenshot from 2026-11-15 21-00-49" src="https://github.com/user-attachments/assets/cf894162-fa2c-4f5f-8088-6e6d339052a2" />
 
 ---
 
