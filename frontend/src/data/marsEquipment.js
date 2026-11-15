@@ -13,9 +13,42 @@ export const MARS_EQUIPMENT = [
     status: 'Silent since 1982',
     title: 'Viking Landers',
     model: '/models/Viking Lander.glb',
-    paragraphs: [
-      'Twin landers that proved Mars could be touched and studied for years, not days. Viking 1 held the surface record for over two decades.',
-      'Viking 1 set down in Chryse Planitia on July 20, 1976 — the first successful US Mars landing — and Viking 2 followed in Utopia Planitia on September 3. Built for 90 sols, Viking 1 kept sending data until November 1982, when a faulty command sequence overwrote its antenna memory. Viking 2 lasted until April 1980. Both landers still sit where they fell silent.',
+    // Two landers, two stories — rendered as sub-headed sections.
+    subsections: [
+      {
+        heading: 'Viking 1: The Machine That Outlived Its Mission',
+        paragraphs: [
+          'In 1976, no one had ever seen the surface of Mars up close. No human had stood on it, and no spacecraft had worked there for more than a few seconds.',
+          'Then came Viking 1.',
+          'It left Earth on August 20, 1975, riding a Titan rocket from Cape Canaveral, and spent nearly a year crossing roughly 500 million miles of space. Its lander was meant to touch down on July 4, 1976, as a gift for America\'s 200th birthday. But when the orbiter took a closer look, the planned site was too rough, and the team decided it was not worth the risk. They moved the landing about 575 kilometres west, to a plain called Chryse Planitia, the Golden Plain.',
+          'On July 20, exactly seven years after Apollo 11 reached the Moon, the lander separated from its orbiter and plunged into the thin Martian air at nearly 10,000 miles per hour. It touched down safely. Twenty-five seconds later, it began sending its first picture home.',
+          'It showed a rock-strewn plain and one of the lander\'s own footpads. It was the first clear image ever sent back from the surface of Mars.',
+          'Viking 1 was built to last 90 days. It lasted six years.',
+          'Through those years, it did what no machine had done before. It photographed Martian sunsets, dug trenches in the soil with its robotic arm, and sent back weather reports, day after day. It also carried the first experiments ever designed to look for life on another planet. One of them, called Labeled Release, gave a result that looked, on the surface, like metabolism. But another instrument found no organic molecules, and NASA concluded the reaction was most likely strange soil chemistry. A small group of scientists has argued otherwise ever since.',
+          'In 1981, the lander was renamed the Thomas A. Mutch Memorial Station, after the leader of its imaging team, who had died in a climbing accident in the Himalayas.',
+          'Then, in November 1982, Mars did not end the mission. A command sent from Earth, meant to give the lander\'s ageing battery new charging software, went wrong. Viking 1 stopped responding.',
+          'Engineers tried for months. They sent command after command, based on every failure they could imagine. In the spring of 1983, they gave up.',
+          'But the lander never left. In 2006, NASA\'s Mars Reconnaissance Orbiter turned its camera on Chryse Planitia and found Viking 1 still sitting where it had landed, about three metres wide, with its parachute and heat shield scattered nearby. It was imaged again in 2016.',
+          'Viking 1 has been silent for more than forty years, and it remains where it stopped, on a plain on another world.',
+        ],
+      },
+      {
+        heading: 'Viking 2: The Twin in the North',
+        paragraphs: [
+          'Seven weeks after Viking 1 made history on Mars, its twin arrived.',
+          'Viking 2 had left Earth on September 9, 1975, and slipped into orbit around Mars the following August. For weeks, its orbiter studied the surface below, looking for a safe place to land. The team chose Utopia Planitia, a vast plain far to the north, much closer to the Martian pole than its sister ship had gone.',
+          'The mood at mission control was uneasy. Viking 1 had worked perfectly, and now there was more to lose. If the second landing failed, the celebration of the past few months could quickly turn into criticism.',
+          'On September 3, 1976, the lander separated from its orbiter and made it down safely. Its cameras began taking pictures right away. The ground was rockier than at the first site, scattered with boulders that were probably thrown out by distant impacts.',
+          'Then the work began. Like Viking 1, Viking 2 scooped up Martian soil and ran it through biology experiments, the first ever built to look for life on another planet. Its results echoed those of its twin, which sat thousands of kilometres away. One test suggested something like metabolism, but the instrument searching for organic molecules found none. NASA concluded that the soil\'s strange chemistry was the likelier cause. Viking 2 had not solved the puzzle, but it had confirmed that the puzzle was real.',
+          'Because it sat so far north, Viking 2 also saw something its twin could not. It saw winter.',
+          'In May 1979, its camera photographed a thin white coating on the rocks and soil: water-ice frost, only a few thousandths of a centimetre thick. It had appeared in the same place almost exactly one Martian year earlier. When the mission ended, JPL called it perhaps the lander\'s most important discovery: water frost covers the ground at far northern latitudes each winter.',
+          'Viking 2 was built to last 90 days. It lasted more than three and a half years, sending home weather reports and photographs long after its mission was complete.',
+          'Then, in early 1980, its batteries began to fail. In March, engineers received garbled data. The final transmission was scheduled for April 11, and no data came. The orbiter was almost out of gas, and NASA needed its antennas for Voyager\'s arrival at Saturn, so the end had already been planned. Viking 2 was switched off while its twin kept working for another two and a half years.',
+          'In 2001, the lander was renamed the Gerald Soffen Memorial Station, after the Viking project scientist who had died the year before.',
+          'In 2006, NASA\'s Mars Reconnaissance Orbiter found it. The lander, about three metres wide, sat on the frozen plain with its heat shield and backshell scattered nearby. Its camera has returned to the area many times since, watching for change.',
+          'Viking 2 has been silent since 1980. It is still there, and still being watched.',
+        ],
+      },
     ],
   },
   {

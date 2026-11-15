@@ -17,7 +17,7 @@ function EquipmentModel({ modelPath }) {
 
   return (
     <group ref={ref}>
-      <Resize scale={2.2}>
+      <Resize scale={2.6}>
         <Center>
           <primitive object={scene} />
         </Center>
@@ -111,16 +111,27 @@ const MarsPage = () => {
                   {selected.year} · {selected.status}
                 </span>
               </div>
-              {selected.paragraphs.filter(Boolean).map((p, i) => (
-                <p
-                  key={i}
-                  className={`leading-[1.7] text-[#C9B5E0] ${
-                    i === 0 ? 'mt-2 text-[0.95rem] font-semibold text-[#FCF9EC] md:text-[1.05rem]' : 'mt-3 text-[0.9rem] md:text-[1rem]'
-                  }`}
-                >
-                  {p}
-                </p>
-              ))}
+              {(selected.subsections || [{ paragraphs: selected.paragraphs }]).map(
+                (sub, si) => (
+                  <div key={si} className={si > 0 ? 'mt-8' : ''}>
+                    {sub.heading && (
+                      <h3 className="mt-2 text-base font-bold text-[#FCF9EC] md:text-lg">
+                        {sub.heading}
+                      </h3>
+                    )}
+                    {sub.paragraphs.filter(Boolean).map((p, i) => (
+                      <p
+                        key={i}
+                        className={`leading-[1.7] text-[#C9B5E0] ${
+                          i === 0 ? 'mt-2 text-[0.95rem] font-semibold text-[#FCF9EC] md:text-[1.05rem]' : 'mt-3 text-[0.9rem] md:text-[1rem]'
+                        }`}
+                      >
+                        {p}
+                      </p>
+                    ))}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </section>
