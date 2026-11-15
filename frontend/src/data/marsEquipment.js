@@ -13,7 +13,6 @@ export const MARS_EQUIPMENT = [
     status: 'Silent since 1982',
     title: 'Viking Landers',
     model: '/models/Viking Lander.glb',
-    // Two landers, two stories — rendered as sub-headed sections.
     subsections: [
       {
         heading: 'Viking 1: The Machine That Outlived Its Mission',

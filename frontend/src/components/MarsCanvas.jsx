@@ -93,6 +93,99 @@ function EquipmentMarker({ item, onSelect }) {
   );
 }
 
+// Random shooting stars: spawn a fading streak now and then behind the planet.
+const makeStreak = (id) => {
+  const side = Math.random() > 0.5 ? 1 : -1;
+  const dx = -side;
+  const dy = (Math.random() - 0.5) * 0.8;
+  const mag = Math.hypot(dx, dy);
+  return {
+    id,
+    start: [side * (4 + Math.random() * 3), -2 + Math.random() * 5, -3 - Math.random() * 4],
+    dir: [dx / mag, dy / mag, 0],
+    angle: Math.atan2(dy, dx),
+    speed: 5 + Math.random() * 4,
+    length: 1 + Math.random() * 1.2,
+    life: 1.4 + Math.random() * 1.2,
+  };
+};
+
+function ShootingStar({ config, onDone }) {
+  const groupRef = useRef();
+  const trailMat = useRef();
+  const headMat = useRef();
+  const t = useRef(0);
+
+  useFrame((_, delta) => {
+    t.current += delta;
+    const p = t.current / config.life;
+    if (p >= 1) {
+      onDone(config.id);
+      return;
+    }
+    groupRef.current.position.set(
+      config.start[0] + config.dir[0] * config.speed * t.current,
+      config.start[1] + config.dir[1] * config.speed * t.current,
+      config.start[2]
+    );
+    const fade = Math.sin(p * Math.PI); // in, then out
+    headMat.current.opacity = fade;
+    trailMat.current.opacity = fade * 0.7;
+  });
+
+  return (
+    <group ref={groupRef} rotation={[0, 0, config.angle]}>
+      {/* bright head */}
+      <mesh>
+        <sphereGeometry args={[0.045, 8, 8]} />
+        <meshBasicMaterial
+          ref={headMat}
+          color="#FCF9EC"
+          transparent
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+      {/* fading trail behind it */}
+      <mesh position={[-config.length / 2, 0, 0]}>
+        <boxGeometry args={[config.length, 0.018, 0.018]} />
+        <meshBasicMaterial
+          ref={trailMat}
+          color="#C9B5E0"
+          transparent
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+    </group>
+  );
+}
+
+function ShootingStars() {
+  const [streaks, setStreaks] = useState([]);
+  const idRef = useRef(0);
+  const activeRef = useRef(0);
+  const timer = useRef(1.2);
+
+  useFrame((_, delta) => {
+    timer.current -= delta;
+    if (timer.current <= 0 && activeRef.current < 3) {
+      timer.current = 1.5 + Math.random() * 3.5;
+      activeRef.current += 1;
+      setStreaks((s) => [...s, makeStreak(idRef.current++)]);
+    }
+  });
+
+  const remove = (id) => {
+    activeRef.current -= 1;
+    setStreaks((s) => s.filter((x) => x.id !== id));
+  };
+
+  return streaks.map((c) => (
+    <ShootingStar key={c.id} config={c} onDone={remove} />
+  ));
+}
+
 const MarsCanvas = ({ onSelect }) => {
   const { active, progress } = useProgress();
   return (
@@ -103,6 +196,7 @@ const MarsCanvas = ({ onSelect }) => {
       <directionalLight position={[-5, -2, -5]} intensity={0.9} color="#c9643a" />
 
       <Stars radius={120} depth={40} count={4000} factor={4} fade speed={0.6} />
+      <ShootingStars />
 
       <Suspense
         fallback={null}
