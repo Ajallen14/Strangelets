@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useMemo, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AiLoader } from '../components/ui/ai-loader';
 import OrbitalSystemSection from '../components/OrbitalSystemSection';
+import Hyperspeed from '../components/Hyperspeed';
 import anime from 'animejs/lib/anime.es.js';
 
 /* =========================================================
@@ -88,18 +89,59 @@ const FloatingParticles = () => {
 const ExplorePage = () => {
   const navigate = useNavigate();
   const [selectedDestination, setSelectedDestination] = useState(null);
+  const [warpTarget, setWarpTarget] = useState(null);
 
   const handleSelectDestination = (path, label) => {
     setSelectedDestination(label);
-    // Delay prevents React Three Fiber unmount race condition
+    setWarpTarget({ path, label });
+    // Match landing-page warp duration: hyperspeed plays, then navigate.
     setTimeout(() => {
       navigate(path);
-    }, 50);
+    }, 2400);
   };
 
   return (
     // ✅ Plain black background — no more radial gradient
     <main className="relative w-full h-screen bg-black text-[#FCF9EC] flex flex-col items-center overflow-hidden">
+
+      {/* Fullscreen Hyperspeed Transition Overlay */}
+      {warpTarget && (
+        <div className="hyperspeed-overlay">
+          <Hyperspeed
+            effectOptions={{
+              distortion: 'turbulentDistortion',
+              length: 400,
+              roadWidth: 10,
+              islandWidth: 2,
+              lanesPerRoad: 4,
+              fov: 90,
+              fovSpeedUp: 150,
+              speedUp: 3,
+              carLightsFade: 0.4,
+              totalSideLightSticks: 20,
+              lightPairsPerRoadWay: 40,
+              colors: {
+                roadColor: 0x000000,
+                islandColor: 0x00105b,
+                background: 0x000000,
+                shoulderLines: 0x6061b6,
+                brokenLines: 0xc9b5e0,
+                leftCars: [0xc9b5e0, 0x6061b6, 0xfcf9ec],
+                rightCars: [0x6061b6, 0x00105b, 0xc9b5e0],
+                sticks: 0xfcf9ec,
+              },
+            }}
+          />
+          <div className="warp-hud">
+            <span className="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-[0.14em] uppercase bg-[#00105B]/85 text-[#C9B5E0] border border-[#6061B6] rounded-full">
+              Hyperspeed Engaged
+            </span>
+            <h2 className="text-[clamp(2rem,4.5vw,3.5rem)] text-[#FCF9EC] drop-shadow-[0_0_25px_rgba(96,97,182,0.9)]">
+              Warping to {warpTarget.label}...
+            </h2>
+          </div>
+        </div>
+      )}
 
       {/* ✅ Floating white particle field sits behind the 3D canvas */}
       <FloatingParticles />

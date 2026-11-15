@@ -1,7 +1,7 @@
 import React, { Suspense, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { OrbitControls, useGLTF, Center, Resize, Html, Ring } from '@react-three/drei';
+import { OrbitControls, useGLTF, Center, Resize, Html, Ring, useProgress } from '@react-three/drei';
 
 function SceneController({ showOrbits }) {
   useFrame((state, delta) => {
@@ -107,20 +107,22 @@ function OrbitingPlanet({
       <group ref={pivotRef} rotation={[0, initialAngle, 0]}>
         <group ref={planetGroupRef} position={[orbitRadius, 0, 0]}>
           
-          {/* Invisible mesh for reliable raycasting (hover/click) on the 3D model */}
+          {/* Invisible mesh for reliable raycasting (hover/click) on the 3D model.
+              Moon passes no onSelect, so it stays display-only. */}
           <mesh
             onClick={(e) => {
-              if (!showOrbits) return;
+              if (!showOrbits || !onSelect) return;
               e.stopPropagation();
               onSelect();
             }}
             onPointerOver={(e) => {
-              if (!showOrbits) return;
+              if (!showOrbits || !onSelect) return;
               e.stopPropagation();
               setHovered(true);
               document.body.style.cursor = 'pointer';
             }}
             onPointerOut={() => {
+              if (!onSelect) return;
               setHovered(false);
               document.body.style.cursor = 'auto';
             }}
@@ -160,6 +162,7 @@ function OrbitingPlanet({
 }
 
 const OrbitalSystemSection = ({ showOrbits, onSelectDestination, background }) => {
+  const { active, progress } = useProgress();
   return (
     <div className="w-full h-full min-h-[300px] md:min-h-[500px] relative cursor-grab active:cursor-grabbing">
       <Canvas camera={{ position: [0, 0.4, 5.2], fov: 45 }} dpr={[1, 2]}>
@@ -170,13 +173,7 @@ const OrbitalSystemSection = ({ showOrbits, onSelectDestination, background }) =
         <directionalLight position={[-8, -4, -5]} intensity={1.2} color="#6061B6" />
         
         <Suspense
-          fallback={
-            <Html center>
-              <span className="text-[#C9B5E0] text-sm md:text-base font-semibold whitespace-nowrap">
-                Loading 3D Space System...
-              </span>
-            </Html>
-          }
+          fallback={null}
         >
           <CentralEarth showOrbits={showOrbits} />
           
@@ -189,8 +186,7 @@ const OrbitalSystemSection = ({ showOrbits, onSelectDestination, background }) =
             initialAngle={0.8}
             showOrbits={showOrbits}
             modelPath="/models/moon.glb"
-            showNameTag={false} 
-            onSelect={() => onSelectDestination('/moon', 'The Moon')}
+            showNameTag={false}
           />
           
           {/* Mars: Real model, no name tag */}
@@ -202,7 +198,7 @@ const OrbitalSystemSection = ({ showOrbits, onSelectDestination, background }) =
             initialAngle={3.5}
             showOrbits={showOrbits}
             modelPath="/models/mars.glb"
-            showNameTag={false}
+            showNameTag
             onSelect={() => onSelectDestination('/mars', 'Mars')}
           />
         </Suspense>
@@ -213,6 +209,15 @@ const OrbitalSystemSection = ({ showOrbits, onSelectDestination, background }) =
         {background}
         
       </Canvas>
+
+      {/* Model-load overlay; stays outside the Canvas because DOM inside Canvas is a THREE node */}
+      {active && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/70">
+          <span className="text-sm font-semibold whitespace-nowrap text-[#C9B5E0] md:text-base">
+            Loading 3D Space System... {Math.round(progress)}%
+          </span>
+        </div>
+      )}
     </div>
   );
 };
