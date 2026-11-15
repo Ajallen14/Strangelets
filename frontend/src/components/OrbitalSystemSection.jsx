@@ -187,6 +187,7 @@ const OrbitalSystemSection = ({ showOrbits, onSelectDestination, background }) =
             showOrbits={showOrbits}
             modelPath="/models/moon.glb"
             showNameTag={false}
+            onSelect={() => onSelectDestination('/moon', 'The Moon')}
           />
           
           {/* Mars: Real model, no name tag */}
@@ -198,14 +199,14 @@ const OrbitalSystemSection = ({ showOrbits, onSelectDestination, background }) =
             initialAngle={3.5}
             showOrbits={showOrbits}
             modelPath="/models/mars.glb"
-            showNameTag
+            showNameTag={false}
             onSelect={() => onSelectDestination('/mars', 'Mars')}
           />
         </Suspense>
         
         <OrbitControls enableZoom={false} enablePan={false} rotateSpeed={0.55} />
         
-        {/* ✅ Render background LAST to ensure overlay works perfectly with renderOrder={10} */}
+        
         {background}
         
       </Canvas>

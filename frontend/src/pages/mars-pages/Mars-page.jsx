@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import MarsCanvas from '../components/MarsCanvas';
-import { MARS_EQUIPMENT } from '../data/marsEquipment';
+import MarsCanvas from '../../components/MarsCanvas';
+
 
 const MarsPage = () => {
   const navigate = useNavigate();
